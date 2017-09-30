@@ -13,6 +13,7 @@ var (
 	indexMessage = []byte(`
 <html>
 <body>
+<title>BigFiles</title>
 <h2>Welcome to mtojek/bigfiles</h2>
 <h3>Try following sample links to download binary files:</h3>
 <div>
