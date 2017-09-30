@@ -38,7 +38,23 @@ Run the application:
 bigfiles
 ```
 
-or go to web panel:
+Use wget to download a sparse file:
+```bash
+wget http://localhost:5000/files/sparse/100MB
+--2017-10-01 00:34:18--  http://localhost:5000/files/sparse/100MB
+Resolving localhost... ::1, fe80::1, 127.0.0.1
+Connecting to localhost|::1|:5000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 104857600 (100M) [application/octet-stream]
+Saving to: '100MB'
+
+100MB                         100%[===================================================>] 100.00M   218MB/s   in 0.5s   
+
+2017-10-01 00:34:19 (218 MB/s) - '100MB' saved [104857600/104857600]
+
+```
+
+or go to web panel to download files:
 
 [http://localhost:5000](http://localhost:5000)
 
