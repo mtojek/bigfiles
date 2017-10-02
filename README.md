@@ -23,7 +23,7 @@ There is no more need to use publicly hosted storage services to download ordina
 ## Features
 
 * download huge files < **8192 PB**
-* choose between **zeros** file or random content
+* choose between **zeros** file, random content, and repeating a user-defined message
 * **easy to use** HTTP GET endpoints (Chrome, curl, etc.)
 * user-defined **file size limit**
 
