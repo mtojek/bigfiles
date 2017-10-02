@@ -2,12 +2,12 @@ package main
 
 import (
 	"errors"
-	"log"
 	"math/rand"
 	"net/http"
 	"os"
 	"regexp"
 	"time"
+	"fmt"
 
 	"github.com/c2h5oh/datasize"
 )
@@ -61,7 +61,13 @@ func (bf *binaryFile) Read(p []byte) (n int, err error) {
 		} else if bf.fileType == "random" {
 			p[i] = byte(rand.Int())
 		} else {
-			log.Fatal("unsupported file type selected")
+			fileTypeBytes := []byte(bf.fileType)
+			fmt.Println(fileTypeBytes)
+			var j int
+			for j = 0; j < len(fileTypeBytes) && i+j < len(p); j++ {
+				p[i+j] = fileTypeBytes[j]
+			}
+			i += j
 		}
 	}
 	return len(p), nil

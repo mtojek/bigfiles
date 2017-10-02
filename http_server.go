@@ -30,7 +30,7 @@ Feel free to visit project Github page - <a target="_new" href="https://github.c
 </html>`)
 	errTooBigFileSize      = errors.New("too big file size")
 	errMissingFileSize     = errors.New("missing file size")
-	errUnsupportedFileType = errors.New("unsupported file type")
+	errMissingFileType     = errors.New("missing file type")
 )
 
 type httpServer struct {
@@ -53,16 +53,15 @@ func (s *httpServer) index(rw http.ResponseWriter, req *http.Request, _ httprout
 func (s *httpServer) createFilesHandler() httprouter.Handle {
 	fileServer := http.FileServer(s.fileSystem)
 	return func(rw http.ResponseWriter, req *http.Request, ps httprouter.Params) {
-		fileType := ps.ByName("type")
 		fileSize := ps.ByName("size")
-
-		if fileType != "sparse" && fileType != "random" {
-			http.Error(rw, errUnsupportedFileType.Error(), http.StatusBadRequest)
+		
+		if fileSize == "" {
+			http.Error(rw, errMissingFileSize.Error(), http.StatusBadRequest)
 			return
 		}
 
-		if fileSize == "" {
-			http.Error(rw, errMissingFileSize.Error(), http.StatusBadRequest)
+		if len(ps.ByName("type")) < 1 {
+			http.Error(rw, errMissingFileType.Error(), http.StatusBadRequest)
 			return
 		}
 
